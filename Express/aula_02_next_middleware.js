@@ -1,6 +1,6 @@
 const express = require('express')
 const api = express()
-
+//Get acessa a rota especifica
 api.get('/',function(request,response,next){
 	console.log('iniciando 1° middleware');
 	next()
