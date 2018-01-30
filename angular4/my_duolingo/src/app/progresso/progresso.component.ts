@@ -10,7 +10,7 @@ export class ProgressoComponent implements OnInit {
 	private valorProgresso:number
 
 	constructor() {
-		this.valorProgresso = 0
+		this.valorProgresso = 50
 	 }
 
 	ngOnInit() {
