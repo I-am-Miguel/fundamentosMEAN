@@ -15,12 +15,13 @@ export class PainelComponent implements OnInit {
 
 	public resposta:string
 	public tentativa:number
-
+	public progresso:number
 	constructor() {
 		this.frases = FRASES
 		this.fraseAtual = this.frases[0]	
 		this.resposta = ""		
 		this.tentativa = 0
+		this.progresso = 0
 	}
 
 	ngOnInit() {
@@ -48,7 +49,10 @@ export class PainelComponent implements OnInit {
 			return false
 		}
 		if (this.resposta.toUpperCase() == this.fraseAtual.frasePtBr.toUpperCase()) {			
+			
 			this.tentativa++
+			this.progresso += (100/(this.frases.length-1))
+
 			this.fraseAtual = this.frases[this.tentativa]
 		}else{
 			alert("Tradução incorreta")

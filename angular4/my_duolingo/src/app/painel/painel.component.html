@@ -2,7 +2,7 @@
 	<div class="jumbotron">
 		<div class="row">
 			<div class="col-sm-6">				
-				<app-progresso></app-progresso>				
+				<app-progresso [valorProgresso] = "progresso"></app-progresso>				
 			</div>
 			<div class="col-sm-6">
 				<div class=" d-flex justify-content-end">
@@ -20,17 +20,17 @@
 					rows="3"
 					value=""
 					(input) = "respostaAtual($event)"
-					></textarea>
+					></textarea>					
+				</div>
 			</div>
-		</div>
-	</div>		
-	<div class="row">
-		<div class="col">
-			<div class=" d-flex justify-content-end">
-				<button type="button" class="btn btn-light btn-lg" 
-				(click) = "verificaResposta()">Verificar</button>				
+		</div>		
+		<div class="row">
+			<div class="col">
+				<div class=" d-flex justify-content-end">
+					<button type="button" class="btn btn-light btn-lg" 
+					(click) = "verificaResposta()">Verificar</button>				
+				</div>
 			</div>
-		</div>
-	</div>		
-</div>
+		</div>		
+	</div>
 </div>
