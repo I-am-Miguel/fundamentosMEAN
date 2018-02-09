@@ -10,53 +10,47 @@ import { FRASES } from './frases-mock'
 	styleUrls: ['./painel.component.css']
 })
 export class PainelComponent implements OnInit {
-	public frases: Array<Frase>
+	public frases: Array<Frase> = FRASES
 	public fraseAtual:Frase	
 
 	public resposta:string
-	public tentativa:number
-	public progresso:number
+	public rodada:number = 0
+	public progresso:number = 0
+	public tentativas:number = 3
+
 	constructor() {
-		this.frases = FRASES
-		this.fraseAtual = this.frases[0]	
-		this.resposta = ""		
-		this.tentativa = 0
-		this.progresso = 0
+		this.atualizaResposta()
 	}
 
 	ngOnInit() {
 	}
 
-/*
-	public fraseAleatoria(){
-		const length  = () => {
-			var resultado =0
-			for (var i = 0; i <= this.frases.length; i++){
-				if(this.frases[i])resultado++
-			}
-			return resultado		
-		}		
-		this.rodada = Math.floor(Math.random() * length())
-		return this.frases[this.rodada]
-	}
-*/
-	public respostaAtual(palavra: Event){
+
+	public respostaAtual(palavra: Event): void{
 		this.resposta = (<HTMLInputElement>palavra.target).value		
 	}
 
-	public verificaResposta(){
-		if(this.resposta.length < 1){
-			return false
+	public verificaResposta(): void{
+		if(this.resposta.length < 1){			
 		}
 		if (this.resposta.toUpperCase() == this.fraseAtual.frasePtBr.toUpperCase()) {			
 			
-			this.tentativa++
+			this.rodada++
 			this.progresso += (100/(this.frases.length-1))
 
-			this.fraseAtual = this.frases[this.tentativa]
-		}else{
-			alert("Tradução incorreta")
-		}
+			this.atualizaResposta()
+			
+		}else{			
+			this.tentativas--
 
+			if (this.tentativas < 0) {
+				alert("Você Perdeu!")				
+			}
+		}		
+	}
+
+	public atualizaResposta():void{
+		this.fraseAtual = this.frases[this.rodada]
+		this.resposta = ""	
 	}
 }
